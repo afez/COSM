@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>COSM</title>
+        <title>CENTRALIZED ONLINE SOCIAL NETWORK PORTAL</title>
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-toggle"></span>
                     </button>
-                    <a class="navbar-brand" href="#">COSM </a>
+                    <a class="navbar-brand" href="#">CENTRALIZED ONLINE SOCIAL NETWORK PORTAL </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,7 @@
         <!-- /Main -->
 
         <button style="margin-top: 100px"class="btn btn-lg btn-login btn-block">
-            <footer class="text-center"> <a href="http://www.fasthub.co.tz"><strong>Fasthub ltd</strong></a> 2016</footer>
+            <footer class="text-center"> <a href="http://www.fasthub.co.tz " target="_blank"><strong>Fasthub ltd</strong></a> 2016</footer>
         </button>
 
 

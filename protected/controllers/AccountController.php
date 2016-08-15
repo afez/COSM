@@ -29,7 +29,7 @@ class AccountController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', "facebook", "link", "post", 'fbfeeds'),
+                'actions' => array('create', 'update', "facebook", "link", "post", 'fbfeeds', 'fbpage'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -162,14 +162,14 @@ class AccountController extends Controller {
     }
 
     public function actionPost() {
-        $token = "EAAEgrwdh8vsBAKe24DRH5uBoKZBSLytGGKPxxHlhuEOVaYTqrZCxTyHAOVhIAPzVz2ZABh4W6ZC2BvxJGvKUz7U81alKOiZCZBEeW8X7VsbM8iMWAtHWbZAlLAonhYiAGSfIl7ZBs8WhHuisUH73WoZA3pFFmmTZB5sDwZD";
+        $token = "EAAEgrwdh8vsBAC37Gz5MzxZBwejJreLjElQTRqgslNQTs63uhAngWgZBIYAcPVqMrXFXhebQLZC80pmeoyHHUgVS0WZAZBCvSoEu3pWhgmZAkDx2qS8NG1D0MM1Sq8ctlgRDJ1UjdFNWVRro8RbF2JSsz6LsFLWVgZD";
         $fb = new Facebook\Facebook([
             'app_id' => '317411091935995',
             'app_secret' => 'efeee4a67b612f6f3cdfb5d818aee5c0',
             'default_graph_version' => 'v2.5',
         ]);
         $linkData = [
-            'link' => $_PoST["link"],
+            'link' => "www.google.com",
             'message' => 'Tembelea website yetu',
         ];
 
@@ -190,6 +190,7 @@ class AccountController extends Controller {
     }
 
     public function actionfbfeeds() {
+        $this->layout = 'fbmain';
         $token = "EAAEgrwdh8vsBAC37Gz5MzxZBwejJreLjElQTRqgslNQTs63uhAngWgZBIYAcPVqMrXFXhebQLZC80pmeoyHHUgVS0WZAZBCvSoEu3pWhgmZAkDx2qS8NG1D0MM1Sq8ctlgRDJ1UjdFNWVRro8RbF2JSsz6LsFLWVgZD";
         $fb = new Facebook\Facebook([
             'app_id' => '317411091935995',
@@ -217,6 +218,39 @@ class AccountController extends Controller {
         $this->render('feeds', array(
             'feeds' => $feeds,
         ));
+    }
+
+    public function actionFbpage() {
+        $token = "EAAEgrwdh8vsBAC37Gz5MzxZBwejJreLjElQTRqgslNQTs63uhAngWgZBIYAcPVqMrXFXhebQLZC80pmeoyHHUgVS0WZAZBCvSoEu3pWhgmZAkDx2qS8NG1D0MM1Sq8ctlgRDJ1UjdFNWVRro8RbF2JSsz6LsFLWVgZD";
+        $fb = new Facebook\Facebook([
+            'app_id' => '317411091935995',
+            'app_secret' => 'efeee4a67b612f6f3cdfb5d818aee5c0',
+            'default_graph_version' => 'v2.5',
+        ]);
+
+        $request = new Facebook\FacebookRequest(
+                $fb, 'POST', $token, '/1099207700172918/feed', array(
+            'message' => 'This is a test message',
+                )
+        );
+      
+
+       
+
+        try {
+            // Returns a `Facebook\FacebookResponse` object
+            $response = $fb->post('/1099207700172918/feed', $request, $token);
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+        $graphNode = $response->getGraphNode();
+
+        echo 'Posted with id: ' . $graphNode['id'];
     }
 
     public function actionAdmin() {
